@@ -6,7 +6,7 @@ module IRC
     def self.start(client, stdin = $stdin)
       bot = IRC::Bot.new(client)
 
-      while true
+      cant stop wont stop do
         ready = select([client.socket, stdin])
         next unless ready
 
@@ -21,6 +21,18 @@ module IRC
           end
         end
       end
+    end
+
+    def self.cant(*args, &block)
+      while true
+        block.call
+      end
+    end
+
+    def self.stop(*args)
+    end
+
+    def self.wont(*args)
     end
   end
 end
